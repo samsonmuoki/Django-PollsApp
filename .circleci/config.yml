@@ -48,8 +48,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            pollsapp venv/bin/activate
-            python3 manage.py test
+            . venv/bin/activate
+            python3 pollsapp/manage.py pollsapp/test
             coverage run --source="." manage.py test
             coverage report
 
