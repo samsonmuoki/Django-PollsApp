@@ -4,3 +4,4 @@ omit =
     manage.py
     config.py
     pollsapp/wsgi.py
+    /venv
