@@ -1,0 +1,22 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  tasks:
+          - name: Create file
+            file:
+                    path: /tmp/yallo
+                    state: touch
+
+- hosts: all
+  sudo: yes
+  tasks:
+      - name: Create user
+        user:
+            name: muoki
+            shell: /bin/zsh
+
+      - name: Install zlib
+        apt:
+            name: zlib
+            state: latest
