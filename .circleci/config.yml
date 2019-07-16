@@ -50,6 +50,8 @@ jobs:
           command: |
             . venv/bin/activate
             python3 pollsapp/manage.py test
+            coverage run --source="." manage.py test
+            coverage report
 
 
       # - store_artifacts:
