@@ -1,0 +1,81 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  gather_facts: True
+
+  tasks:
+
+          - name: Install base packages
+            apt: name={{ item }} 
+            with_items:
+              - locales
+              - build-essential
+              - acl
+              - ntp
+              - htop
+              - git
+              # - supervisor
+              - python3-apt
+              - python3-pip
+              - nginx
+              # - gunicorn
+            tags:
+              - packages
+            
+          - name: Upgrade pip
+            pip: name=pip state=latest
+            tags:
+              - packages
+
+          - name: Create directory pollsapp
+            file:
+              state: directory
+              path: muoki/project_polls
+
+          - name: Create directory for supervisor in etc
+            file:
+              state: directory
+              path: muoki/etc/supervisor
+              mode: 0755
+          - name: Copy supervisord files to remote host
+            copy:
+              src: /etc/supervisor
+              dest: muoki/etc
+              mode: 0755
+          
+          - name: Pull project from github
+            git:
+              repo: 'https://github.com/samsonmuoki/Django-PollsApp.git'
+              dest: muoki/project_polls
+
+          - name: install virtualenv
+            pip: name=virtualenv
+          
+          - name: create virtualenv
+            command: virtualenv muoki/project_polls/venv
+          
+          - name: activate virtualenv
+            command: /bin/bash  /home/ubuntu/muoki/project_polls/venv/bin/activate
+
+          - name: installing requirements
+            pip:
+              requirements: /home/ubuntu/muoki/project_polls/requirements.txt
+              virtualenv: /home/ubuntu/muoki/project_polls/venv
+              virtualenv_python: python3.6
+
+          
+          - name: start nginx
+            service: name=nginx state=started
+
+          - name: run supervisord
+            # command: "/home/ubuntu/.local/bin/supervisord -c /home/ubuntu/muoki/etc/supervisor/supervisor.conf"
+            command: "/home/ubuntu/.local/bin/supervisorctl start pollsapp"
+
+          # - name: begin polls app
+          #   supervisorctl: name=pollsapp state=started
+
+          # - name: uninstall python2
+          #   apt: name=python state=absent
+
+
