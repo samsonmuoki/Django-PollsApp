@@ -73,5 +73,5 @@ jobs:
           name: upload to pypi
           command: |
             . venv/bin/activate
-            cd django-polls
+            
             twine upload dist/*
