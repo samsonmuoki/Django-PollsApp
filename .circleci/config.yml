@@ -58,3 +58,20 @@ jobs:
       # - store_artifacts:
       #     path: test-reports
       #     destination: test-reports
+
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = samsonmuoki" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+      - run:
+          name: create packages
+          command: |
+            make package
+      - run:
+          name: upload to pypi
+          command: |
+            . venv/bin/activate
+            cd django-polls
+            twine upload dist/*
