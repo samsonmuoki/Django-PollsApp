@@ -1,12 +1,19 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+# from django.utils.text import slugify
 # Create your models here.
 
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+
+    # slug = models.SlugField(default='', blank=True)
+
+    # def save(self):
+    #     self.slug = slugify(self.title)
+    #     super(Question, self).save()
 
     def __str__(self):
         return self.question_text
@@ -24,6 +31,6 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.choice_text

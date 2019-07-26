@@ -12,3 +12,8 @@ services:
     ports:
       - 8080:8080
 
+  elasticsearch:
+    image: launcher.gcr.io/google/elasticsearch2
+    ports:
+      - "9200:9200" # for RESTFUL API
+      - "9300:9300" # for node communication in case you run multiple instances

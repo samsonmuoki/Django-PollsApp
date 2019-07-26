@@ -6,6 +6,19 @@ from django.http import HttpResponse, HttpResponseRedirect  # ', Http404'
 # from django.template import loader
 from django.views import generic
 from .models import Question, Choice
+# from polls.documents import QuestionDocument
+
+
+# def search(request):
+
+#     q = request.GET.get('q')
+
+#     if q:
+#         questions = QuestionDocument.search().query("match", title=q)
+#     else:
+#         questions = ''
+
+#     return render(request, 'polls/search.html', {'posts': questions})
 
 
 def index(request):
