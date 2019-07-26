@@ -74,4 +74,4 @@ jobs:
           command: |
             . venv/bin/activate
             
-            twine upload dist/*
+            twine upload --skip-existing ./dist/*
