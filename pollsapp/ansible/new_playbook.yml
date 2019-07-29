@@ -45,7 +45,7 @@
             copy:
               src: /home/sam/Desktop/Django_Tutorial/Django-PollsApp/pollsapp/db.sqlite3
               dest: /home/sam/muoki/pollsapp/
-              mode: 0755
+              mode: 0777
           
           - name: install virtualenv
             pip: name=virtualenv
@@ -103,13 +103,13 @@
               dest: /etc/supervisor
           
           
-          # - name: run supervisord
-            # command: "sudo /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
+          - name: run supervisord
+            command: "sudo /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
             # command: "/home/ubuntu/.local/bin/supervisorctl start pollsapp"
             # command: "supervisorctl start pollsapp"
 
-          - name: begin polls app
-            supervisorctl: name=pollsapp state=started
+          # - name: begin polls app
+          #   supervisorctl: name=pollsapp state=started
 
           
 
