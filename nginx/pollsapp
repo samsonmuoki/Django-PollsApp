@@ -1,0 +1,15 @@
+server {
+    listen [::]:80 default_server;
+    listen 80 default_server;
+    # server_name kipkoech.tk www.kipkoech.tk;
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+            root /home/sam/muoki/pollsapp;
+    }
+
+    location / {
+            include proxy_params;
+            proxy_pass http://unix:/home/sam/muoki/pollsapp/pollsapp.sock;
+    }
+}

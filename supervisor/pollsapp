@@ -1,0 +1,7 @@
+[program:pollsapp]
+command=/home/sam/muoki/venv/bin/gunicorn --workers 3 --bind unix:/home/sam/muoki/pollsapp/pollsapp.sock pollsapp.wsgi
+directory=/home/sam/muoki/pollsapp
+autostart=true
+autorestart=true 
+stderr_logfile=/var/log/pollsapp.err.log
+stdout_logfile=/var/log/pollsapp.out.log
