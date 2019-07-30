@@ -64,7 +64,7 @@
           # - name: grant user ownership to pollsapp folder
           #   command: "chown sam:www-data /home/sam/muoki/pollsapp"
           #   become: yes
-          - name: Recursively change ownership of a directory
+          - name: Recursively change ownership of pollsapp directory
             file:
               path: /home/sam/muoki/pollsapp
               state: directory
