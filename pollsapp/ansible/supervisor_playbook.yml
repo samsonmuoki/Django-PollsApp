@@ -9,8 +9,8 @@
           - name: Install base packages
             apt: 
               name: "{{ packages }}"
-              vars:
-                packages:
-                  # - supervisor
+            vars:
+              packages:
+                # - supervisor
                           
           

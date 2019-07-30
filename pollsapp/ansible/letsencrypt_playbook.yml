@@ -14,9 +14,9 @@
           - name: Install base packages
             apt: 
               name: "{{ packages }}"
-              vars:
-                packages:
-                  - python-certbot-nginx
+            vars:
+              packages:
+                - python-certbot-nginx
                           
           - name: Enable UFW
             ufw:

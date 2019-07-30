@@ -4,14 +4,7 @@
   become: yes
   gather_facts: True
 
-  tasks:
-
-          - name: add repository for certbot
-            apt_repository: 
-              repo: deb http://ppa.launchpad.net/certbot/certbot/ubuntu bionic main
-              state: present
-            when: ansible_distribution_release == 'bionic'
-            
+  tasks:            
           
           - name: start gunicorn
             shell: |
