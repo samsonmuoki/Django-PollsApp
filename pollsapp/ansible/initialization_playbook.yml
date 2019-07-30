@@ -15,16 +15,16 @@
           - name: Install base packages
             apt: 
               name: "{{ packages }}"
-              vars:
-                packages:
-                  - locales
-                  - build-essential
-                  - htop
-                  - git
-                  - python3-apt
-                  - python3-pip
-                  - python-certbot-nginx
-                          
+            vars:
+              packages:
+                - locales
+                - build-essential
+                - htop
+                - git
+                - python3-apt
+                - python3-pip
+                - python-certbot-nginx
+                        
           - name: Upgrade pip
             pip: name=pip state=latest
             
