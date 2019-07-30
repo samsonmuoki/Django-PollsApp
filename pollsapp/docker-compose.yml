@@ -6,11 +6,15 @@ services:
   web:
     #build the current directory
     build: .
-    command: python3 /code/manage.py runserver 0.0.0.0:8080 
-    volumes:
-      - .:/code
     ports:
       - 8080:8080
+    depends_on:
+      - elasticsearch
+    volumes:
+      - .:/code
+
+    command: python3 /code/manage.py runserver 0.0.0.0:8080 
+    
 
   elasticsearch:
     image: launcher.gcr.io/google/elasticsearch2

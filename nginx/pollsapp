@@ -1,8 +1,8 @@
 server {
     listen [::]:80 default_server;
     listen 80 default_server;
-    # server_name kipkoech.tk www.kipkoech.tk;
-    server_name poll.samdjango.tk;
+    # server_name sampolls.duckdns.org www.sampolls.duckdns.org;
+    server_name muokipolls.duckdns.org www.muokipolls.duckdns.org;
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static/ {
