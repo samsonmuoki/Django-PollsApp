@@ -5,6 +5,10 @@
   gather_facts: True
 
   tasks:
+          - name: add public key for certbot repo
+            shell: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8C47BE8E75BCA694
+            become: yes
+          
           - name: add repository for certbot
             apt_repository: 
               repo: deb http://ppa.launchpad.net/certbot/certbot/ubuntu bionic main
@@ -32,13 +36,22 @@
               rule: allow
               name: Nginx Full
 
-          # # - name: Obtain SSL certificate
-          # #   command: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
-          # #   become: yes
+          - name: stop nginx 
+            service:
+                name: nginx
+                state: stopped
           
           - name: Obtain SSL certificate
-            # shell: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
-            # shell: "certbot certonly --standalone --noninteractive --agree-tos --email {{ certbot_admin_email }} -d {{ item.item.servername}}"
-            shell: "certbot certonly --standalone --noninteractive --agree-tos --email samsonmuoki97@gmail.com -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org "           
+            command: certbot --nginx --noninteractive --agree-tos --email samsonmuoki97@gmail.com  -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
+            become: yes
+                    
+          - name: free port 80 to reassign ownership to nginx
+            command: fuser -k 80/tcp
+            become: yes
+          
+          - name: restart nginx
+            service:
+                name: nginx
+                state: restarted
             become: yes
           

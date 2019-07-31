@@ -61,9 +61,6 @@
               . /home/sam/muoki/venv/bin/activate
               python3 /home/sam/muoki/pollsapp/manage.py migrate
 
-          # - name: grant user ownership to pollsapp folder
-          #   command: "chown sam:www-data /home/sam/muoki/pollsapp"
-          #   become: yes
           - name: Recursively change ownership of pollsapp directory
             file:
               path: /home/sam/muoki/pollsapp
