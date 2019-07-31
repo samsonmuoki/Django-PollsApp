@@ -32,7 +32,7 @@
               rule: allow
               name: Nginx Full
 
-          - name: Obtain SSL certificate
-            command: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
-            become: yes
+          # - name: Obtain SSL certificate
+          #   command: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
+          #   become: yes
           
