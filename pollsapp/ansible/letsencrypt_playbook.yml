@@ -32,7 +32,13 @@
               rule: allow
               name: Nginx Full
 
-          # - name: Obtain SSL certificate
-          #   command: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
-          #   become: yes
+          # # - name: Obtain SSL certificate
+          # #   command: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
+          # #   become: yes
+          
+          - name: Obtain SSL certificate
+            # shell: certbot --nginx -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org
+            # shell: "certbot certonly --standalone --noninteractive --agree-tos --email {{ certbot_admin_email }} -d {{ item.item.servername}}"
+            shell: "certbot certonly --standalone --noninteractive --agree-tos --email samsonmuoki97@gmail.com -d muokipolls.duckdns.org -d www.muokipolls.duckdns.org "           
+            become: yes
           

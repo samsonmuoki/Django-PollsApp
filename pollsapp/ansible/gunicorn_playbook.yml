@@ -11,7 +11,6 @@
               . /home/sam/muoki/venv/bin/activate
               cd /home/sam/muoki/pollsapp
               gunicorn --daemon --workers 3 --bind unix:/home/sam/muoki/pollsapp/pollsapp.sock pollsapp.wsgi
-            # command: /home/sam/muoki/venv/bin/gunicorn --daemon --workers 3 --bind unix:/home/sam/muoki/pollsapp/pollsapp.sock /home/sam/muoki/pollsapp/pollsapp.wsgi
-
+            
           
 
