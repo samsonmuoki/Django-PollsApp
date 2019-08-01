@@ -129,10 +129,12 @@
                 - "f1:76:70:86:e5:4d:12:a4:9a:0e:10:a8:21:c4:21:8d"
    
    
-        - run:
-            name: Deploy to GCE
-            command: ./deployment/deploy.sh yes
-                
+        # - run:
+        #     name: Deploy to GCE
+        #     # command: ./deployment/deploy.sh yes
+        #     shell: ./deployment/deploy.sh yes
+
+        - run: ./deployment/deploy.sh yes 
                 
 #     deploy:
 #       docker:
