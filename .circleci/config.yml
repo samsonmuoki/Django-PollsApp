@@ -134,7 +134,7 @@
         #     # command: ./deployment/deploy.sh yes
         #     shell: ./deployment/deploy.sh yes
 
-        - run: ./deployment/deploy.sh yes 
+        - run: yes | ./deployment/deploy.sh  
                 
 #     deploy:
 #       docker:
