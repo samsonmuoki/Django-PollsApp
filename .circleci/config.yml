@@ -134,7 +134,9 @@
         - add_ssh_keys
         - run:
             name: Deploy to GCE
-            command: ./deployment/deploy.sh
+            command: |
+                cd deployment
+                ./deploy.sh
     
   workflows:
     version: 2
