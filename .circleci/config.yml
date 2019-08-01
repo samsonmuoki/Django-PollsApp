@@ -70,57 +70,57 @@
   #       only: master
 
   version: 2
-# jobs:
-  build-job:
-    docker:
-      - image: circleci/python:3.7
+  jobs:
+    build-job:
+      docker:
+        - image: circleci/python:3.7
 
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+        # documented at https://circleci.com/docs/2.0/circleci-images/
+        # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+      working_directory: ~/repo
 
-    steps:
-      - checkout
+      steps:
+        - checkout
 
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install -r pollsapp/requirements.txt
+        - run:
+            name: install dependencies
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install --upgrade pip
+              pip install -r pollsapp/requirements.txt
 
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
-            cd pollsapp
-            python3 manage.py test
-            coverage run --source="." manage.py test
-            coverage report
+        - run:
+            name: run tests
+            command: |
+              . venv/bin/activate
+              cd pollsapp
+              python3 manage.py test
+              coverage run --source="." manage.py test
+              coverage report
 
 
-      # - store_artifacts:
-      #     path: test-reports
-      #     destination: test-reports
+        # - store_artifacts:
+        #     path: test-reports
+        #     destination: test-reports
 
-      - run:
-          name: init .pypirc
-          command: |
-            echo -e "[pypi]" >> ~/.pypirc
-            echo -e "username = samsonmuoki" >> ~/.pypirc
-            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
-      - run:
-          name: create packages
-          command: |
-            python setup.py sdist
-      - run:
-          name: upload to pypi
-          command: |
-            . venv/bin/activate
-            
-            twine upload --skip-existing ./dist/*
+        - run:
+            name: init .pypirc
+            command: |
+              echo -e "[pypi]" >> ~/.pypirc
+              echo -e "username = samsonmuoki" >> ~/.pypirc
+              echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+        - run:
+            name: create packages
+            command: |
+              python setup.py sdist
+        - run:
+            name: upload to pypi
+            command: |
+              . venv/bin/activate
+              
+              twine upload --skip-existing ./dist/*
 
   # version: 2
   deploy-job:
