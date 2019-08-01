@@ -131,7 +131,7 @@
    
         - run:
             name: Deploy to GCE
-            command: yes | ./deployment/deploy.sh
+            command: echo "yes" | ./deployment/deploy.sh
                 
                 
 #     deploy:
