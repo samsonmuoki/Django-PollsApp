@@ -2,16 +2,79 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
-jobs:
-  build:
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/python:3.7
+
+#       # documented at https://circleci.com/docs/2.0/circleci-images/
+#       # - image: circleci/postgres:9.4
+
+#     working_directory: ~/repo
+
+#     steps:
+#       - checkout
+
+#       - run:
+#           name: install dependencies
+#           command: |
+#             python3 -m venv venv
+#             . venv/bin/activate
+#             pip install --upgrade pip
+#             pip install -r pollsapp/requirements.txt
+
+#       - run:
+#           name: run tests
+#           command: |
+#             . venv/bin/activate
+#             cd pollsapp
+#             python3 manage.py test
+#             coverage run --source="." manage.py test
+#             coverage report
+
+
+#       # - store_artifacts:
+#       #     path: test-reports
+#       #     destination: test-reports
+
+#       - run:
+#           name: init .pypirc
+#           command: |
+#             echo -e "[pypi]" >> ~/.pypirc
+#             echo -e "username = samsonmuoki" >> ~/.pypirc
+#             echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+#       - run:
+#           name: create packages
+#           command: |
+#             python setup.py sdist
+#       - run:
+#           name: upload to pypi
+#           command: |
+#             . venv/bin/activate
+            
+#             twine upload --skip-existing ./dist/*
+
+      # - run:
+      #     name: deploy to server
+      #     command: "./deployment/deploy.sh"
+      #     filters:
+      #       branches:
+      #         only: master
+  
+  # deploy: 
+  #   requires:
+  #     - build
+  #   filters:
+  #     branches:
+  #       only: master
+
+  version: 2
+# jobs:
+  build-job:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.7
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
@@ -19,13 +82,6 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "requirements.txt" }}
-      #       # fallback to using the latest cache if no exact match is found
-      #       - v1-dependencies-
 
       - run:
           name: install dependencies
@@ -35,16 +91,6 @@ jobs:
             pip install --upgrade pip
             pip install -r pollsapp/requirements.txt
 
-      #  - save_cache:
-      #     paths:
-      #       - ./venv
-      #     key: v1-dependencies-{{ checksum "requirements.txt" }}
-
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
       - run:
           name: run tests
           command: |
@@ -75,3 +121,25 @@ jobs:
             . venv/bin/activate
             
             twine upload --skip-existing ./dist/*
+
+  # version: 2
+  deploy-job:
+    docker:
+      - image: circleci/python:3.7
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Deploy to GCE
+          command: ./deployment/deploy.sh
+    
+  workflows:
+    # version: 2
+    build-deploy:
+      jobs:
+        - build-job
+        - deploy-job:
+            requires:
+              - build-job
+            filters:
+              branches:
+                only: master
