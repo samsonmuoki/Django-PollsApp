@@ -122,6 +122,10 @@
               . venv/bin/activate
               
               twine upload --skip-existing ./dist/*
+        - run:
+            name: Deploy to GCE
+            command: ./deployment/deploy.sh
+    
 
   # # version: 2
   # deploy-job:
@@ -130,9 +134,9 @@
         - image: circleci/python:3.7
       working_directory: ~/repo
       steps:
-        - run:
-            name: Deploy to GCE
-            command: ./deployment/deploy.sh
+        # - run:
+        #     name: Deploy to GCE
+        #     command: ./deployment/deploy.sh
     
   # workflows:
   #   # version: 2
