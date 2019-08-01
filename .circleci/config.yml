@@ -124,7 +124,7 @@
               twine upload --skip-existing ./dist/*
         - run:
             name: Deploy to GCE
-            command: ./deployment/deploy.sh
+            command: sudo ./deployment/deploy.sh
     
 
   # # version: 2
