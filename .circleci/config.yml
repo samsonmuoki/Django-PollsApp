@@ -129,11 +129,11 @@
 
   # # version: 2
   # deploy-job:
-    deploy:
-      docker:
-        - image: circleci/python:3.7
-      working_directory: ~/repo
-      steps:
+    # deploy:
+    #   docker:
+    #     - image: circleci/python:3.7
+    #   working_directory: ~/repo
+    #   steps:
         # - run:
         #     name: Deploy to GCE
         #     command: ./deployment/deploy.sh
