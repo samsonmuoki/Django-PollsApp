@@ -134,8 +134,6 @@
             command: yes | ./deployment/deploy.sh
                 
                 
-                
-
 #     deploy:
 #       docker:
 #         - image: circleci/python:3.7
