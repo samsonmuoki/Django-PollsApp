@@ -71,7 +71,8 @@
 
   version: 2
   jobs:
-    build-job:
+    # build-job:
+    build:
       docker:
         - image: circleci/python:3.7
 
