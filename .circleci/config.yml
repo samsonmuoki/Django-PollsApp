@@ -136,6 +136,7 @@
         - run:
                 name: deploy to server
                 command: |
+                    . venv/bin/activate
                     cd pollsapp/ansible
                     ansible-playbook cd_playbook -i hosts.yml
                 
