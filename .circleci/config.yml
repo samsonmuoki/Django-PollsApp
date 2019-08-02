@@ -138,7 +138,7 @@
                 command: |
                     . venv/bin/activate
                     cd pollsapp/ansible
-                    ansible-playbook cd_playbook -i hosts.yml
+                    ansible-playbook cd_playbook.yml -i hosts.yml
                 
 #     deploy:
 #       docker:
