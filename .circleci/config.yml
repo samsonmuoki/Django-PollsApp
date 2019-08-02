@@ -126,7 +126,7 @@
         - add_ssh_keys:
             fingerprints:
                 # - "SHA256:uJ1wen9MWu9tGNYvCHcPI+7/Nog/43GetbHrI7o7zuU"
-                - "f1:76:70:86:e5:4d:12:a4:9a:0e:10:a8:21:c4:21:8d"
+                - "8e:51:4b:14:06:44:dc:20:d2:ae:6f:4d:be:39:21:07"
    
    
         # - run:

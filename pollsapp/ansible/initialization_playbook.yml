@@ -23,7 +23,7 @@
                 - git
                 - python3-apt
                 - python3-pip
-                # - python-certbot-nginx
+                # - redis-server
                         
           - name: Upgrade pip
             pip: name=pip state=latest

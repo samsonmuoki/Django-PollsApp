@@ -24,3 +24,4 @@ urlpatterns = [
     path('search/', include('haystack.urls')),
     # path('search/', polls_views.search, name='search'),
 ]
+
