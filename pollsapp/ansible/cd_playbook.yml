@@ -11,9 +11,9 @@
               dest: muoki/
     - name: installing requirements
       pip:
-      requirements: /home/sam/muoki/pollsapp/requirements.txt
-      virtualenv: /home/sam/muoki/venv
-      virtualenv_python: python3.6
+        requirements: /home/sam/muoki/pollsapp/requirements.txt
+        virtualenv: /home/sam/muoki/venv
+        virtualenv_python: python3.6
 
     - name: activate venv and make migrations
       shell: |
