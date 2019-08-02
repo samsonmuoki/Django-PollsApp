@@ -75,7 +75,8 @@
     build:
       docker:
         - image: circleci/python:3.7
-
+          environment:
+                ANSIBLE_HOST_KEY_CHECKING: "no"
         # documented at https://circleci.com/docs/2.0/circleci-images/
         # - image: circleci/postgres:9.4
 
@@ -132,8 +133,11 @@
         #     name: Deploy to GCE
         #     # command: ./deployment/deploy.sh yes
         #     shell: ./deployment/deploy.sh yes
-
-        - run: ./deployment/deploy.sh 
+        - run:
+                name: deploy to server
+                command: |
+                    cd pollsapp/ansible
+                    ansible-playbook cd_playbook -i hosts.yml
                 
 #     deploy:
 #       docker:
