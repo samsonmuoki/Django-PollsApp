@@ -126,6 +126,10 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 
 
+class 
+
+
+
 # class ChoiceView(TestCase):
 #     def test_choice_has_fullstop(self):
 #         choice = Choice.objects.get()
