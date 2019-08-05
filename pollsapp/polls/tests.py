@@ -142,7 +142,8 @@ class QuestionResultViewTests(TestCase):
         '''
         response = self.client.get(reverse('polls:detail'))
         # self.assertEqual(response.status_code, 200)
-        self.assertContains(response, html=True)
+        # self.assertContains(response, [r^"0-9"])
+        self.assertContains(r"(^[0-9])", response)
         # self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
 
