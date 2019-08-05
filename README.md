@@ -28,4 +28,4 @@ Quick start
 
 5. Visit http://127.0.0.1:8000/polls/ to participate in the poll.
 
-
+6. Visit http://muokipolls.duckdns.org to view the deployed application.
