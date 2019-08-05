@@ -134,10 +134,15 @@ def create_choice(choice_text):
     """
     # return Question.objects.create(choice_text=choice_text)
 
-# class QuestionResultViewTests(TestCase):
-#     def test_results(self):
-        
-#         self.assertEquals(question_id, question_id)
+class QuestionIndexViewTests(TestCase):
+    def test_no_questions(self):
+        '''
+        if no questions exist, an appropriate message is displayed.
+        '''
+        response = self.client.get(reverse('polls:detail'))
+        self.assertEqual(response.status_code, 200)
+        # self.assertContains(response, "No polls are available.")
+        # self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
 
 
