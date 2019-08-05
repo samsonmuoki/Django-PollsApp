@@ -14,7 +14,7 @@ class QuestionModelTests(TestCase):
     def test_was_published_recently_with_future_question(self):
         # '''
         # was_published_recently() returns False for questions whose
-        # pub_date is in the futire.
+        # pub_date is in the future.
         # '''4
 
         time = timezone.now() + datetime.timedelta(days=30)
@@ -142,7 +142,7 @@ class QuestionResultViewTests(TestCase):
         '''
         response = self.client.get(reverse('polls:detail'))
         # self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "0-9")
+        self.assertContains(response, text)
         # self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
 
