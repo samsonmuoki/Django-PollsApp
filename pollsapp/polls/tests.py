@@ -134,6 +134,11 @@ def create_choice(choice_text):
     """
     # return Question.objects.create(choice_text=choice_text)
 
+class QuestionResultViewTests(TestCase):
+    def test_results(self):
+        pass
+
+
 
 # class ChoiceView(TestCase):
 #     def test_choice_has_fullstop(self):
