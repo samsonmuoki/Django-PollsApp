@@ -4,6 +4,7 @@ omit =
     manage.py
     config.py
     polls/search_indexes.py
+    polls/tests.py
     pollsapp/wsgi.py
     pollsapp/manage.py
     venv/*
