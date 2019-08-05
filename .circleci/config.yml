@@ -132,12 +132,12 @@
             fingerprints:
                 - "8e:51:4b:14:06:44:dc:20:d2:ae:6f:4d:be:39:21:07"
    
-        - run:
-                name: deploy to server
-                command: |
-                    . venv/bin/activate
-                    cd pollsapp/ansible
-                    ansible-playbook cd_playbook.yml -i hosts.yml
+        # - run:
+        #         name: deploy to server
+        #         command: |
+        #             . venv/bin/activate
+        #             cd pollsapp/ansible
+        #             ansible-playbook cd_playbook.yml -i hosts.yml
         
                     
     deploy:
@@ -151,7 +151,7 @@
             command: |
                 . venv/bin/activate
                 cd pollsapp/ansible
-                ansible-playbook cd_playbook.yml hosts.yml
+                ansible-playbook cd_playbook.yml -i hosts.yml
     
   workflows:
     version: 2
