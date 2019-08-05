@@ -22,4 +22,11 @@
         . /home/sam/muoki/venv/bin/activate
         pip3 install -r /home/sam/muoki/pollsapp/requirements.txt
         python3 /home/sam/muoki/pollsapp/manage.py migrate
+    
+    - name: start gunicorn
+      shell: |
+        . /home/sam/muoki/venv/bin/activate
+        cd /home/sam/muoki/pollsapp
+        gunicorn --daemon --workers 3 --bind unix:/home/sam/muoki/pollsapp/pollsapp.sock pollsapp.wsgi
+          
 
