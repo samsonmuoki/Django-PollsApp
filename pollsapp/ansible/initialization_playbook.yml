@@ -56,21 +56,21 @@
               executable: pip3
           
 
-          - name: install virtualenv
-            pip: 
-              name: virtualenv
-              executable: pip3
-            become: yes
-            become_user: root              
+          # - name: install virtualenv
+          #   pip: 
+          #     name: virtualenv
+          #     executable: pip3
+          #   become: yes
+          #   become_user: root              
           
-          - name: create virtualenv
-            command: /usr/local/bin/virtualenv muoki/venv
+          # - name: create virtualenv
+          #   command: /usr/local/bin/virtualenv muoki/venv
             
-          - name: installing requirements
-            pip:
-              requirements: /home/sam/muoki/pollsapp/requirements.txt
-              virtualenv: /home/sam/muoki/venv
-              virtualenv_python: python3.6
+          # - name: installing requirements
+          #   pip:
+          #     requirements: /home/sam/muoki/pollsapp/requirements.txt
+          #     virtualenv: /home/sam/muoki/venv
+          #     virtualenv_python: python3.6
 
           - name: activate venv and make migrations
             shell: |
