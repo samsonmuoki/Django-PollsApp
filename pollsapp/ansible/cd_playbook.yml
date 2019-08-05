@@ -9,14 +9,17 @@
       git:
               repo: 'https://github.com/samsonmuoki/Django-PollsApp.git'
               dest: muoki/
-    - name: installing requirements
-      pip:
-        requirements: /home/sam/muoki/pollsapp/requirements.txt
-        virtualenv: /home/sam/muoki/venv
-        virtualenv_python: python3.6
+    # - name: installing requirements
+    #   pip:
+    #     requirements: /home/sam/muoki/pollsapp/requirements.txt
+    #     virtualenv: /home/sam/muoki/venv
+    #     virtualenv_python: python3.6
+
+
 
     - name: activate venv and make migrations
       shell: |
         . /home/sam/muoki/venv/bin/activate
-          python3 /home/sam/muoki/pollsapp/manage.py migrate
+        pip3 install -r /home/sam/muoki/pollsapp/requirements.txt
+        python3 /home/sam/muoki/pollsapp/manage.py migrate
 

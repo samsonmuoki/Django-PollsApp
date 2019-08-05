@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # 'django_elasticsearch_dsl',
     # 'django_haystack',
     'haystack',
+    'django_prometheus',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -69,6 +70,7 @@ ELASTICSEARCH_DSL = {
 }
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'pollsapp.urls'
@@ -104,7 +107,8 @@ WSGI_APPLICATION = 'pollsapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django_prometheus.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
@@ -143,8 +147,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+PROMETHEUS_EXPORT_MIGRATIONS = False
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

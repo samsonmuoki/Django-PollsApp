@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('search/', include('haystack.urls')),
+    path('', include('django_prometheus.urls')),
     # path('search/', polls_views.search, name='search'),
 ]
 

@@ -23,8 +23,8 @@
                 - git
                 - python3-apt
                 - python3-pip
-                - supervisor
                 # - redis-server
+                - supervisor
                         
           # - name: Upgrade pip
           #   pip: name=pip state=latest
@@ -45,11 +45,6 @@
           #     dest: /home/sam/muoki/pollsapp/
           #     mode: 0777
           
-          - name: stop supervisor
-            service:
-              name: supervisor
-              state: stopped
-          
           - name: Install setuptools
             pip:
               name: setuptools
@@ -67,14 +62,15 @@
           #   command: /usr/local/bin/virtualenv muoki/venv
             
           - name: installing requirements
+            # command: pip3 install -r /home/sam/muoki/pollsapp/requirements.txt
             pip:
               requirements: /home/sam/muoki/pollsapp/requirements.txt
-              virtualenv: /home/sam/muoki/venv
-              virtualenv_python: python3.6
+              # virtualenv: /home/sam/muoki/venv
+              # virtualenv_python: python3.6
 
           - name: activate venv and make migrations
             shell: |
-              . /home/sam/muoki/venv/bin/activate
+              # . /home/sam/muoki/venv/bin/activate
               python3 /home/sam/muoki/pollsapp/manage.py migrate
 
           - name: Recursively change ownership of pollsapp directory

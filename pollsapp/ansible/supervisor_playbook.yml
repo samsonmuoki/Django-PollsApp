@@ -11,6 +11,26 @@
               name: "{{ packages }}"
             vars:
               packages:
-                # - supervisor
+                - supervisor
+          
+          - name: copy supervisor/conf.d files to server
+            copy:
+              src: /home/sam/Desktop/Django_Tutorial/Django-PollsApp/supervisor/pollsapp.conf
+              dest: /etc/supervisor/conf.d
+
+          - name: copy supervisord.conf files to server
+            copy:
+              src: /home/sam/Desktop/Django_Tutorial/Django-PollsApp/supervisor/supervisord.conf
+              dest: /etc/supervisor
+          
+          - name: reread changes and update supervisor
+            shell: |
+              supervisorctl reread
+              supervisorctl update
+            become: yes
+          
+          - name: restart supervisor
+            shell: supervisorctl reload
+            become: yes
                           
           
