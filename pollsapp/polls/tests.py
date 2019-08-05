@@ -4,7 +4,7 @@ from django.test import TestCase
 # Create your tests here.
 
 from django.utils import timezone
-from .models import Question
+from .models import Question, Choice
 from django.urls import reverse
 # from django.contrib.auth.models import UserManager
 # from model_mommy import mommy
@@ -126,8 +126,13 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 
 
-class 
-
+def create_choice(question_text, days):
+    """
+    Create a question with the given `question_text` and published the
+    given number of `days` offset to now (negative for questions published
+    in the past, positive for questions that have yet to be published).
+    """
+    return Question.objects.create(choice_text=choice_text, pub_date=time)
 
 
 # class ChoiceView(TestCase):
