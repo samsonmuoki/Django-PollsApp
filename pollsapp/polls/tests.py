@@ -136,7 +136,7 @@ def create_choice(choice_text):
 
 class QuestionResultViewTests(TestCase):
     def test_results(self):
-        pass
+        self.assertEquals(question_id, question_id)
 
 
 
