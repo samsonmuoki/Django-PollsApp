@@ -6,6 +6,8 @@ from django.test import TestCase
 from django.utils import timezone
 from .models import Question
 from django.urls import reverse
+# from django.contrib.auth.models import UserManager
+# from model_mommy import mommy
 
 
 class QuestionModelTests(TestCase):
@@ -122,3 +124,30 @@ class QuestionDetailViewTests(TestCase):
         url = reverse('polls:detail', args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+
+# class ChoiceView(TestCase):
+#     def test_choice_has_fullstop(self):
+#         choice = Choice.objects.get()
+#         self.assertContains(choice, '.')
+
+# class ChoiceTest(TestCase):
+#     # def create_choice(self, question='question_text', choice_text='YAML', votes="1"):
+#         #return Choice.objects.create(question=question, choice_text=choice_text, votes=votes, created_at=timezone.now())
+
+#     def test_question_creation(self):
+#         # c = self.create_choice()
+#         c = mommy.make(Choice)
+#         self.assertTrue(isinstance(c, Choice))
+#         self.assertEqual(c.__question_text__(), c.question)
+
+#     def test_votes_creation(self):
+#         c = mommy.make(Choice)
+#         self.assertTrue(isinstance(c, Choice))
+#         self.assertEqual(c.__vot__(), c.votes)
+
+#     def test_choice_creation(self):
+#         c = mommy.make(Choice)
+#         self.assertTrue(isinstance(c, Choice))
+#         self.assertEqual(c.__str__(), c.choice_text)
+

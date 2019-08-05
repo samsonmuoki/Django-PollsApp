@@ -3,6 +3,7 @@ show_missing = True
 omit =
     manage.py
     config.py
+    polls/search_indexes.py
     pollsapp/wsgi.py
     pollsapp/manage.py
     venv/*

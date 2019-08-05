@@ -35,7 +35,7 @@ SECRET_KEY = '#(opcg6f1al(=(l&uovkdd%7k%+=834g4&ijcx_fx(&1@obe9^'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['104.197.137.136', '127.0.0.1', 'sampolls.duckdns.org', 'www.sampolls.duckdns.org', '35.225.188.198']
-ALLOWED_HOSTS = ['muokipolls.duckdns.org', 'www.muokipolls.duckdns.org']
+ALLOWED_HOSTS = ['sampolls.duckdns.org', 'www.sampolls.duckdns.org']
 
 
 
