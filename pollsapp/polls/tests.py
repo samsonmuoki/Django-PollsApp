@@ -126,7 +126,7 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 
 
-def create_choice(question_text, days):
+def create_choice(choice_text):
     """
     Create a question with the given `question_text` and published the
     given number of `days` offset to now (negative for questions published
