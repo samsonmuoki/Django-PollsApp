@@ -45,10 +45,10 @@
           #     dest: /home/sam/muoki/pollsapp/
           #     mode: 0777
           
-          - name: stop supervisor
-            service:
-              name: supervisor
-              state: stopped
+          # - name: stop supervisor
+          #   service:
+          #     name: supervisor
+          #     state: stopped
           
           - name: Install setuptools
             pip:
@@ -56,15 +56,15 @@
               executable: pip3
           
 
-          # - name: install virtualenv
-          #   pip: 
-          #     name: virtualenv
-          #     executable: pip3
-          #   become: yes
-          #   become_user: root              
+          - name: install virtualenv
+            pip: 
+              name: virtualenv
+              executable: pip3
+            become: yes
+            become_user: root              
           
-          # - name: create virtualenv
-          #   command: /usr/local/bin/virtualenv muoki/venv
+          - name: create virtualenv
+            command: /usr/local/bin/virtualenv muoki/venv
             
           - name: installing requirements
             pip:

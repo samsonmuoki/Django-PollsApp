@@ -82,6 +82,10 @@
 
       working_directory: ~/repo
 
+      branches:
+        only:
+          - master
+
       steps:
         - checkout
 
@@ -145,12 +149,12 @@
 #         - image: circleci/python:3.7
 #       working_directory: ~/repo
 #       steps:
-#         - add_ssh_keys
+        # - add_ssh_keys
 #         # - run:
 #         #     name: Deploy to GCE
 #         #     command: |
-#         #         cd deployment
-#         #         ./deploy.sh
+#         #         . venv
+#         #         
     
 #   workflows:
 #     version: 2
