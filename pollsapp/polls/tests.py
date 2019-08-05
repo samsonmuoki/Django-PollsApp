@@ -134,8 +134,9 @@ def create_choice(choice_text):
     """
     # return Question.objects.create(choice_text=choice_text)
 
-class QuestionIndexViewTests(TestCase):
-    def test_no_questions(self):
+
+class QuestionResultViewTests(TestCase):
+    def test_results(self):
         '''
         if no questions exist, an appropriate message is displayed.
         '''
