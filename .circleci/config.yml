@@ -138,7 +138,8 @@
                     . venv/bin/activate
                     cd pollsapp/ansible
                     ansible-playbook cd_playbook.yml -i hosts.yml
-                
+        
+                    
     deploy:
       docker:
         - image: circleci/python:3.7
