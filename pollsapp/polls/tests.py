@@ -142,7 +142,7 @@ class QuestionResultViewTests(TestCase):
         '''
         response = self.client.get(reverse('polls:detail'))
         # self.assertEqual(response.status_code, 200)
-        self.assertContains(response, text)
+        self.assertContains(response, html=True)
         # self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
 
