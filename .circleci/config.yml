@@ -112,12 +112,7 @@
         #     path: test-reports
         #     destination: test-reports
 
-        - run:
-            name: init .pypirc
-            command: |
-              echo -e "[pypi]" >> ~/.pypirc
-              echo -e "username = samsonmuoki" >> ~/.pypirc
-              echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+        
         
         # - add_ssh_keys:
         #     fingerprints:
@@ -138,6 +133,14 @@
       # working_directory: ~/repo
       steps:
         - checkout
+        
+        - run:
+            name: init .pypirc
+            command: |
+              echo -e "[pypi]" >> ~/.pypirc
+              echo -e "username = samsonmuoki" >> ~/.pypirc
+              echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+        
         - run:
             name: create packages
             command: |
