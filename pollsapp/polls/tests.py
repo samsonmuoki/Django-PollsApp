@@ -135,15 +135,15 @@ def create_choice(choice_text):
     # return Question.objects.create(choice_text=choice_text)
 
 
-class QuestionResultViewTests(TestCase):
-    def test_details(self):
-        '''
-        if no questions exist, an appropriate message is displayed.
-        '''
-        response = self.client.get(reverse('polls:detail'))
+# class QuestionResultViewTests(TestCase):
+#     def test_details(self):
+#         '''
+#         if no questions exist, an appropriate message is displayed.
+#         '''
+#         response = self.client.get(reverse('polls:detail'))
         # self.assertEqual(response.status_code, 200)
         # self.assertContains(response, [r^"0-9"])
-        self.assertContains(r"(^[0-9])", response)
+        # self.assertContains(r"(^[0-9])", response)
         # self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
 
