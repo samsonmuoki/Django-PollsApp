@@ -144,7 +144,7 @@
     deploy:
       docker:
         - image: circleci/python:3.7
-      working_directory: ~/repo
+      # working_directory: ~/repo
       steps:
         # - add_ssh_keys
         - run:
