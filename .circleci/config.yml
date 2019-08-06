@@ -118,17 +118,7 @@
               echo -e "[pypi]" >> ~/.pypirc
               echo -e "username = samsonmuoki" >> ~/.pypirc
               echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
-        - run:
-            name: create packages
-            command: |
-              python setup.py sdist
-        - run:
-            name: upload to pypi
-            command: |
-              . venv/bin/activate
-              
-              twine upload --skip-existing ./dist/*
-
+        
         # - add_ssh_keys:
         #     fingerprints:
         #         - "8e:51:4b:14:06:44:dc:20:d2:ae:6f:4d:be:39:21:07"
@@ -140,7 +130,27 @@
         #             cd pollsapp/ansible
         #             ansible-playbook cd_playbook.yml -i hosts.yml
         
-                    
+    publish:
+      docker:
+        - image: circleci/python:3.7
+      environment:
+       ANSIBLE_HOST_KEY_CHECKING: "no"
+      # working_directory: ~/repo
+      steps:
+        - checkout
+        - run:
+            name: create packages
+            command: |
+              python setup.py sdist
+        - run:
+            name: upload to pypi
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install twine    
+              twine upload --skip-existing ./dist/*
+
+
     deploy:
       docker:
         - image: circleci/python:3.7
@@ -163,6 +173,12 @@
     build-deploy:
       jobs:
         - build
+        - publish:
+            requires:
+                - build
+            filters:
+              branches:
+                only: master
         - deploy:
             requires:
               - build
