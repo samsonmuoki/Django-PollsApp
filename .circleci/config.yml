@@ -133,35 +133,35 @@
         #     fingerprints:
         #         - "8e:51:4b:14:06:44:dc:20:d2:ae:6f:4d:be:39:21:07"
    
-        - run:
-                name: deploy to server
-                command: |
-                    . venv/bin/activate
-                    cd pollsapp/ansible
-                    ansible-playbook cd_playbook.yml -i hosts.yml
+        # - run:
+        #         name: deploy to server
+        #         command: |
+        #             . venv/bin/activate
+        #             cd pollsapp/ansible
+        #             ansible-playbook cd_playbook.yml -i hosts.yml
         
                     
-  #   deploy:
-  #     docker:
-  #       - image: circleci/python:3.7
-  #     working_directory: ~/repo
-  #     steps:
-  #       # - add_ssh_keys
-  #       - run:
-  #           name: Deploy to GCE
-  #           command: |
-  #               . venv/bin/activate
-  #               cd pollsapp/ansible
-  #               ansible-playbook cd_playbook.yml -i hosts.yml
+    deploy:
+      docker:
+        - image: circleci/python:3.7
+      working_directory: ~/repo
+      steps:
+        # - add_ssh_keys
+        - run:
+            name: Deploy to GCE
+            command: |
+                . venv/bin/activate
+                cd pollsapp/ansible
+                ansible-playbook cd_playbook.yml -i hosts.yml
     
-  # workflows:
-  #   version: 2
-  #   build-deploy:
-  #     jobs:
-  #       - build
-  #       - deploy:
-  #           requires:
-  #             - build
-  #           filters:
-  #             branches:
-  #               only: master
+  workflows:
+    version: 2
+    build-deploy:
+      jobs:
+        - build
+        - deploy:
+            requires:
+              - build
+            filters:
+              branches:
+                only: master
