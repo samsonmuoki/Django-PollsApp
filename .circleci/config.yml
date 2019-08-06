@@ -101,10 +101,11 @@
             name: run tests
             command: |
               . venv/bin/activate
-              cd pollsapp
-              python3 manage.py test
-              coverage run --source="." manage.py test
-              coverage report
+              tox
+              # cd pollsapp
+              # python3 manage.py test
+              # coverage run --source="." manage.py test
+              # coverage report
 
 
         # - store_artifacts:

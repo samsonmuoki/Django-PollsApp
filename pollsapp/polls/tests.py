@@ -1,10 +1,12 @@
 import datetime
-from django.test import TestCase
+from . import views
+from django.test import TestCase, Client
+# from django.http import JsonResponse # HttpResponse
 
 # Create your tests here.
 
 from django.utils import timezone
-from .models import Question, Choice
+from .models import Question
 from django.urls import reverse
 # from django.contrib.auth.models import UserManager
 # from model_mommy import mommy
@@ -126,50 +128,21 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 
 
-def create_choice(choice_text):
-    """
-    Create a question with the given `question_text` and published the
-    given number of `days` offset to now (negative for questions published
-    in the past, positive for questions that have yet to be published).
-    """
-    # return Question.objects.create(choice_text=choice_text)
+# class IndexViewTest(TestCase):
+#     def test_index(self):
+#         c = Client()
+#         response = c.get(reverse('polls:index'))
+#         self.assertEqual(response.status_code, 200)
+#         self.assertTemplateUsed(response, 'polls/index.html')
 
 
-# class QuestionResultViewTests(TestCase):
-#     def test_details(self):
-#         '''
-#         if no questions exist, an appropriate message is displayed.
-#         '''
-#         response = self.client.get(reverse('polls:detail'))
-        # self.assertEqual(response.status_code, 200)
-        # self.assertContains(response, [r^"0-9"])
-        # self.assertContains(r"(^[0-9])", response)
-        # self.assertQuerysetEqual(response.context['latest_question_list'], [])
-
-
-
-# class ChoiceView(TestCase):
-#     def test_choice_has_fullstop(self):
-#         choice = Choice.objects.get()
-#         self.assertContains(choice, '.')
-
-# class ChoiceTest(TestCase):
-#     # def create_choice(self, question='question_text', choice_text='YAML', votes="1"):
-#         #return Choice.objects.create(question=question, choice_text=choice_text, votes=votes, created_at=timezone.now())
-
-#     def test_question_creation(self):
-#         # c = self.create_choice()
-#         c = mommy.make(Choice)
-#         self.assertTrue(isinstance(c, Choice))
-#         self.assertEqual(c.__question_text__(), c.question)
-
-#     def test_votes_creation(self):
-#         c = mommy.make(Choice)
-#         self.assertTrue(isinstance(c, Choice))
-#         self.assertEqual(c.__vot__(), c.votes)
-
-#     def test_choice_creation(self):
-#         c = mommy.make(Choice)
-#         self.assertTrue(isinstance(c, Choice))
-#         self.assertEqual(c.__str__(), c.choice_text)
-
+class VotesViewTest(TestCase):
+    def test_votes(self):
+        # c = Client
+        question = create_question(question_text="test question", days=1)
+        # url = reverse('polls:results', args=(question.id,))
+        response = views.vote("GET", question.id)
+        # response = c.get(reverse('polls:votes'))
+        # response = self.client.get(url)
+        # self.assertContains(response, question.question_text)
+        self.assertEqual(response.status_code, 302)
